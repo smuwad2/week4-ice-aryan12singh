@@ -16,29 +16,41 @@
         </form>
 
         <script>
-        
+
             function validateForm(formName) {
                 // Error messages:
                 // Invalid age: Age must be between 10 and 40.
                 // Invalid email: Email must contain the character @.
                 // Empty password: Password must be non-empty.
                 var errorMessages="";
-                var form = document.forms["form"];
+                var form = document.forms["inputForm"];  
+                
                 var age = form["age"].value;
-                if (document.forms["form"]["age"].value < 10 || document.forms["form"]["age"].value > 40) {
+                var email = form["email"].value;        
+                var password = form["password"].value;  
+    
+                // Age check
+                if (Number(age) < 10 || Number(age) > 40) {
                     errorMessages += "Age must be between 10 and 40.\n";
                 }
+                
+                // Email validation - now email variable is defined
                 if (!email.includes("@")) {
                     errorMessages += "Email must contain the character @.\n";
                 }
+                
+                // Password validation - now password variable is defined
                 if (password.trim() === "") {
                     errorMessages += "Password must be non-empty.\n";
                 }
+
+                // Show errors if any exist
                 if (errorMessages) {
                     alert(errorMessages);
-                    return false;
+                    return false;  // Prevent form submission
                 }
-                return true;
+                
+                return true;  // Allow form submission
             }
          </script>
 </body>
